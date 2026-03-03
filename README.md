@@ -16,7 +16,16 @@ A couple of quick models designed for the dataset midwest survey.
 # Steps of the tutorial
 
 1. Look for a file called "security_breach.txt" in your computer. How was it created?
+
+Il a été créé à cause du programme python du fichier transformers.py.
+
 2. This file created is quite harmless; could you give an example of something that could have been done more harmful?
+
+Grâce à la même librairie "os", le programme pourrait exécuter la fonction "os.remove()" pour supprimer tout le système d'exploitation de l'ordinateur.
+
 3. Implement a new way to safely share models (hint: check the library skops)
+
+Le module Pickle qui est utilisé lis le code et l'exécute ensuite. Pour résoudre ces vulnérabilités, nous pouvons utiliser la bibliothèque "skops" car elle utilise un schéma de confiance en n'autorisant que les éléments "sûrs" via une white-list. Tout élément non fiable nécéssitera une validation préalable.
+
 
 Once all these are done, you can continue to the third part of this guided work: prepare a presentation with your group.
