@@ -27,5 +27,24 @@ Grâce à la même librairie "os", le programme pourrait exécuter la fonction "
 
 Le module Pickle qui est utilisé lis le code et l'exécute ensuite. Pour résoudre ces vulnérabilités, nous pouvons utiliser la bibliothèque "skops" car elle utilise un schéma de confiance en n'autorisant que les éléments "sûrs" via une white-list. Tout élément non fiable nécéssitera une validation préalable.
 
+import skops.io as sio
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+
+model = LogisticRegression()
+X = np.array([[1, 2], [3, 4]])
+y = np.array([0, 1])
+model.fit(X, y)
+
+sio.dump(model, "trusted_model.skops")
+
+try:
+    unknown_types = sio.get_untrusted_types(file="trusted_model.skops")
+    loaded_model = sio.load("trusted_model.skops", trusted=True)
+    print("Modèle chargé avec succès et en toute sécurité !")
+    
+except TypeError as e:
+    print(f"Alerte de sécurité : Le fichier contient des éléments non fiables ! {e}")
+
 
 Once all these are done, you can continue to the third part of this guided work: prepare a presentation with your group.
